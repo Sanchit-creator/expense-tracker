@@ -67,6 +67,20 @@ export const singleProducts = async (data) => {
 }
 
 
+export const editProduct = async ({paramsone, signup}) => {
+    try {
+        const config = {
+            headers: {
+                Authorization : `Bearer ${JSON.parse(localStorage.getItem('token'))}`
+            }
+        }
+        return await axios.patch(`${URL}/api/user/update/${paramsone}`, signup, config);
+    } catch (error) {
+        console.log('Error', error.response.data);
+    }
+}
+
+
 export const deleteUser = async ({params, e}) => {
     try {
         const config = {

@@ -48,7 +48,7 @@ export default function SignIn() {
       localStorage.setItem("params", response.id)
       if (localStorage.getItem('userInfo')) {
         navigate(`/dashboard/${localStorage.getItem('params')}`)
-        toast.success('Login Succesfull')
+        toast.success('Welcome!')
       }
       else{
         toast.error('Error while Login')
@@ -84,7 +84,7 @@ export default function SignIn() {
             <LockIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Business Sign in
+            Expense Tracker Sign in
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField

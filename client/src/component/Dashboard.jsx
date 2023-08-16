@@ -133,7 +133,7 @@ const DashBoard = () => {
             </h1>
         )
       }
-    
+      const totalAmount = response.reduce((total, data) => total + parseFloat(data.amount), 0);
       const deleteP = async (e) => {
         try {
             let result = await deleteUser({params, e});
@@ -237,6 +237,7 @@ const DashBoard = () => {
             </Main>
             )) : 'Loading...'
           }
+          <h2>Total Amount: Rs. {totalAmount.toFixed(2)}</h2>
     </MainBox>
   )
 }
