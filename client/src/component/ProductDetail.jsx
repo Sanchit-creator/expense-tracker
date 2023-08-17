@@ -84,7 +84,7 @@ const ProductDetail = () => {
         <TextField
           required
           id="outlined-disabled"
-          label="Name"
+          label="Amount"
           onChange={(e) => onInputChange(e)}
           defaultValue={interviewData.amount}
           name='amount'
@@ -92,7 +92,7 @@ const ProductDetail = () => {
         <TextField
           required
           id="outlined-disabled"
-          label="Name"
+          label="Description"
           onChange={(e) => onInputChange(e)}
           defaultValue={interviewData.des}
           name='des'
@@ -100,9 +100,17 @@ const ProductDetail = () => {
         <TextField
           required
           id="outlined-disabled"
-          label="Name"
+          label="Date"
           onChange={(e) => onInputChange(e)}
           defaultValue={interviewData.date}
+          name='date'
+        /> 
+        <TextField
+          required
+          id="outlined-disabled"
+          label="Category"
+          onChange={(e) => onInputChange(e)}
+          defaultValue={interviewData.category}
           name='date'
         /> 
          <Grid item xs={12} sm={6}>
