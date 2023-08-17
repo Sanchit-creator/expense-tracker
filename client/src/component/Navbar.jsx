@@ -49,7 +49,7 @@ const Navbar = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Tool>
-          <h1>Expense Tracker App</h1>
+          <h2>Expense Tracker App</h2>
           {/* {
             user === 'user' ? 
             <SearchInput
