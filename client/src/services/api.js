@@ -1,6 +1,6 @@
 
 import axios from 'axios'
-const URL = 'http://localhost:3000';
+const URL = 'https://expense-ti2c.onrender.com';
     
 
 export const signUpUser = async(data) => {
