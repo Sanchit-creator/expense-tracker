@@ -7,6 +7,17 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { deleteUser, getProducts, postProduct } from '../services/api';
 import { useMediaQuery } from '@mui/material';
+import {
+    BarChart,
+    Bar,
+    XAxis,
+    YAxis,
+    CartesianGrid,
+    Tooltip,
+    Legend,
+    ResponsiveContainer,
+} from 'recharts';
+
 
 const MainBox = styled(Box)`
     background-color: #F0FFF0;
@@ -15,6 +26,7 @@ const MainBox = styled(Box)`
     flex-direction: column;
     justify-content: start;
     align-items: center;
+    overflow-x: hidden;
 `
 
 const Upload = styled(Box)`
@@ -84,6 +96,7 @@ const DashBoard = () => {
     const [open, setOpen] = React.useState(false);
     const [submit, setSubmit] = useState(initialValues);
     const [response, setResponse] = useState();
+    const [chartData, setChartData] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('All'); // New state for selected category
     const isMobile = useMediaQuery('(max-width: 600px)');
     const handleClickOpen = () => {
@@ -99,6 +112,7 @@ const DashBoard = () => {
         const random = () => getProducts(params).then(function(result) {
             console.log(result.data);
             setResponse(result.data);
+            setChartData(prepareChartData(result.data));
         })
         random();
     }, [])
@@ -119,6 +133,26 @@ const DashBoard = () => {
             toast.error('Not Posted!')
         }
     }
+
+    const prepareChartData = (data) => {
+        const categories = ['Groceries', 'Utilities', 'Entertainment'];
+        const categoryAmounts = {};
+    
+        categories.forEach((category) => {
+            categoryAmounts[category] = 0;
+        });
+    
+        data.forEach((expense) => {
+            categoryAmounts[expense.category] += parseFloat(expense.amount);
+        });
+    
+        const chartData = categories.map((category) => ({
+            category,
+            amount: categoryAmounts[category],
+        }));
+    
+        return chartData;
+    };
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -247,6 +281,18 @@ const DashBoard = () => {
                     <MenuItem value="Entertainment">Entertainment</MenuItem>
                 </Select>
             </FormControl>
+            <Box style={{"width": "80vw", "padding-left": "10vw", "overflow-x": "hidden"}}>
+            <ResponsiveContainer width="80%" height={300}>
+                <BarChart data={chartData}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="category" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Bar dataKey="amount" fill="#00B000" name="Expense Amount" />
+                </BarChart>
+            </ResponsiveContainer>
+            </Box>
             {
                 response ? response
                     .filter(data => selectedCategory === 'All' || data.category === selectedCategory)

@@ -50,15 +50,6 @@ const Navbar = () => {
       <AppBar position="static">
         <Tool>
           <h2>Expense Tracker App</h2>
-          {/* {
-            user === 'user' ? 
-            <SearchInput
-                placeholder="Search product…"
-                inputProps={{ 'aria-label': 'search' }}
-            />
-            : ''
-          } */}
-          <Icons>
             { userInfo && <Button color="inherit"
                 onClick={() => {
                     localStorage.clear();
@@ -66,7 +57,6 @@ const Navbar = () => {
                     toast.success('Logged Out')
                 }}
             >Logout</Button>}
-          </Icons>
         </Tool>
       </AppBar>
     </Box>
