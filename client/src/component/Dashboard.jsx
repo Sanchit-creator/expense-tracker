@@ -126,6 +126,7 @@ const DashBoard = () => {
             let res = await postProduct(submit, params);
             setOpen(false);
             setResponse(res.data)
+            setChartData(prepareChartData(res.data))
             console.log(res.data);
             toast.success('Posted')
         } catch (error) {
