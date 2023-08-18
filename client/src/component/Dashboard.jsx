@@ -227,6 +227,7 @@ const DashBoard = () => {
                                 name='date'
                                 type="text"
                                 fullWidth
+                                placeholder='DD/MM/YYYY'    
                                 variant="standard"
                                 onChange={(e) => onInputChange(e)}
                             />
