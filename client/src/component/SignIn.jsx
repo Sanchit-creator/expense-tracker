@@ -32,6 +32,7 @@ const loginInitialValues = {
 
 export default function SignIn() {
   const [login, setLogin] = useState(loginInitialValues)
+  const [loading, setLoading] = useState(false)
 
   const onValueChange = (e) => {
     setLogin({...login, [e.target.name]: e.target.value});
@@ -40,15 +41,19 @@ export default function SignIn() {
 
   const loginUser = async () => {
     try {
+      setLoading(true)
       let response = await signIn(login);
-      console.log(response);
-      localStorage.setItem("userInfo", JSON.stringify(response))
-      localStorage.setItem("token", JSON.stringify(response.token))
-      localStorage.setItem("user", response.user)
-      localStorage.setItem("params", response.id)
-      if (localStorage.getItem('userInfo')) {
-        navigate(`/dashboard/${localStorage.getItem('params')}`)
-        toast.success('Welcome!')
+      if (response) {
+        console.log(response);
+        setLoading(false)
+        localStorage.setItem("userInfo", JSON.stringify(response))
+        localStorage.setItem("token", JSON.stringify(response.token))
+        localStorage.setItem("user", response.user)
+        localStorage.setItem("params", response.id)
+        if (localStorage.getItem('userInfo')) {
+          navigate(`/dashboard/${localStorage.getItem('params')}`)
+          toast.success('Welcome!')
+        }
       }
       else{
         toast.error('Error while Login')
@@ -66,6 +71,12 @@ export default function SignIn() {
       password: data.get('password'),
     });
   };
+
+  if (loading) {
+    return (
+      <h1>Loading...</h1>
+    )
+  }
 
 
   return (

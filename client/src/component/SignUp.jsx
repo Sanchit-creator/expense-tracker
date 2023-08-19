@@ -36,6 +36,7 @@ const signupInitialValues = {
 
 export default function SignUp() {
     const [signup, setSignup] = useState(signupInitialValues);
+    const [loading, setLoading] = useState(false)
 
     const onInputChange = (e) => {
         setSignup({ ...signup, [e.target.name]: e.target.value});
@@ -46,9 +47,11 @@ export default function SignUp() {
 
   const signupUser = async () => {
     try {
+      setLoading(true)
       let res = await signUpUser(signup);
       if (res) {
         navigate('/')
+        setLoading(false)
         toast.success('Successfully Signed Up!')
       }else{
         toast.error('User Already Exist')
@@ -67,6 +70,12 @@ export default function SignUp() {
       password: data.get('password'),
     });
   };
+
+  if (loading) {
+    return (
+      <h1>Loading...</h1>
+    )
+  }
 
 
   return (
@@ -121,6 +130,7 @@ export default function SignUp() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                type='email'
               />
             </Grid>
             <Grid item xs={12}>

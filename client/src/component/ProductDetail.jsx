@@ -111,7 +111,7 @@ const ProductDetail = () => {
           label="Category"
           onChange={(e) => onInputChange(e)}
           defaultValue={interviewData.category}
-          name='date'
+          name='category'
         /> 
          <Grid item xs={12} sm={6}>
             <Button
