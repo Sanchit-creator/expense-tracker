@@ -136,7 +136,7 @@ const DashBoard = () => {
     }
 
     const prepareChartData = (data) => {
-        const categories = ['Groceries', 'Utilities', 'Entertainment'];
+        const categories = ['Groceries', 'Utilities'];
         const categoryAmounts = {};
     
         categories.forEach((category) => {
@@ -256,7 +256,6 @@ const DashBoard = () => {
                                 >
                                     <MenuItem value="Groceries">Groceries</MenuItem>
                                     <MenuItem value="Utilities">Utilities</MenuItem>
-                                    <MenuItem value="Entertainment">Entertainment</MenuItem>
                                 </Select>
                             </FormControl>
                         </DialogContent>
@@ -280,7 +279,6 @@ const DashBoard = () => {
                     <MenuItem value="All">All Categories</MenuItem>
                     <MenuItem value="Groceries">Groceries</MenuItem>
                     <MenuItem value="Utilities">Utilities</MenuItem>
-                    <MenuItem value="Entertainment">Entertainment</MenuItem>
                 </Select>
             </FormControl>
             <Box style={{"width": "80vw", "padding-left": "10vw", "overflow-x": "hidden"}}>
